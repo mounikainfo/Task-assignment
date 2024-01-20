@@ -1,3 +1,9 @@
+/* # export the s3 bucket name
+output "s3_arn" {
+  value = aws_s3_bucket.s3-bucket.arn
+} */
+
+
 # export the s3 bucket name
 output "env_file_bucket_name" {
   value = var.env_file_bucket_name

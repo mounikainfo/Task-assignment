@@ -28,3 +28,8 @@ private_data_subnet_az2_cidr = "10.0.5.0/24"
 # security group variables
 ssh_ip = "37.245.143.20/32"
 
+# rds variables
+database_snapshot_identifier = "data"
+database_instance_class      = "db.t2.micro"
+database_instance_identifier = "data"
+muti_az_deployment           = "false"

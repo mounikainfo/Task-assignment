@@ -60,6 +60,24 @@ module "security_group" {
   ssh_ip       = var.ssh_ip
 }
 
+/*  # launch rds instance
+module "rds" {
+  source                       = "../modules/rds"
+  project_name                 = local.project_name
+  environment                  = local.environment
+  private_data_subnet_az1_id   = module.vpc.private_data_subnet_az1_id
+  private_data_subnet_az2_id   = module.vpc.private_data_subnet_az2_id
+  database_snapshot_identifier = var.database_snapshot_identifier
+  database_instance_class      = var.database_instance_class
+  availability_zone_1          = module.vpc.availability_zone_1
+  database_instance_identifier = var.database_instance_identifier
+  muti_az_deployment           = var.muti_az_deployment
+  database_security_group_id   = module.security_group.database_security_group_id
+}
+
+
+ */
+
 # create iam
 module "iam" {
   source       = "../modules/iam"
@@ -85,7 +103,7 @@ module "eks" {
 module "nodegroup" {
   source                    = "../modules/nodegroup"
   NODE_GROUP_ARN            = module.iam.NODE_GROUP_ROLE_ARN
-  private_app_subnet_az1_id = module.vpc.private_app_subnet_az1_id
-  private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
+  public_subnet_az1_id = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id = module.vpc.public_subnet_az2_id
   EKS_CLUSTER_NAME          = module.eks.EKS_CLUSTER_NAME
 }

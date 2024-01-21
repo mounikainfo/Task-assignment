@@ -1,5 +1,5 @@
 # project details
-region       = "ap-south-1"
+region       = "us-west-2"
 project_name = "task"
 environment  = "dev"
 
@@ -10,13 +10,13 @@ env_file_name        = "task.env" */
 
 
 # s3 variables
-env_file_bucket_name = "ecs-env-file-bucket"
+env_file_bucket_name = "assignment-bucket"
 env_file_name        = "rentzone.env"
 
 # vpc variables
-/* region                       = "ap-south-1"
+/* region                       = "us-west-2"
 project_name                 = "rentzone"
-environment                  = "dev" */
+environment                  = "dev" */ 
 vpc_cidr                     = "10.0.0.0/16"
 public_subnet_az1_cidr       = "10.0.0.0/24"
 public_subnet_az2_cidr       = "10.0.1.0/24"

@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v
+apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: contactfrontendappdeployment
@@ -16,7 +16,7 @@ spec:
    spec:
     containers:
     - name: contactfrontendcontainer
-      image: mouni9948/myuiapp
+      image: mouni9948/contact_ui_ng_app
       ports:
       - containerPort: 80
 ---
@@ -33,6 +33,6 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 3000
+    nodePort: 30002
 ...
 

@@ -12,14 +12,14 @@ module "s3" {
 }
  */
 
-# create s3 bucket
+/* # create s3 bucket
 module "s3_bucket" {
   source               = "../modules/s3"
   project_name         = local.project_name
   env_file_bucket_name = var.env_file_bucket_name
   env_file_name        = var.env_file_name
 }
-
+ */
 #vpc module
 
 module "vpc" {

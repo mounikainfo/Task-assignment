@@ -14,8 +14,8 @@ resource "aws_eks_node_group" "node_group" {
   # These subnets must have the following resource tag: kubernetes.io/cluster/EKS_CLUSTER_NAME 
 
   subnet_ids = [
-    var.private_app_subnet_az1_id,
-    var.private_app_subnet_az2_id
+    var.public_subnet_az1_id,
+    var.public_subnet_az2_id
   ]
 
   # Configuration block
@@ -45,7 +45,7 @@ resource "aws_eks_node_group" "node_group" {
   force_update_version = false
 
   # Instance type associated with the EKS Node Group
-  instance_types = ["t3.small"]
+  instance_types = ["t3.large"]
 
   labels = {
     role = "${var.EKS_CLUSTER_NAME}-Node-group-role",

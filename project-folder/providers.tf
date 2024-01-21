@@ -1,6 +1,6 @@
 # configure aws provider to establish a secure connection between terraform and aws
 provider "aws" {
-  region  = "ap-south-1"
+  region  = "us-west-2"
   profile = "mounika"
 
   default_tags {
@@ -19,7 +19,7 @@ terraform {
       version = "2.23.0"
     }
     helm = {
-      source = "hashicorp/helm"
+      source  = "hashicorp/helm"
       version = "~> 2.5"
     }
     http = {

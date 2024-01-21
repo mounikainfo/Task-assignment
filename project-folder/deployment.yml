@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v
+apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: contactbackendappdeployment
@@ -16,7 +16,7 @@ spec:
    spec:
     containers:
     - name: contactbackendcontainer
-      image: mouni9948/mybackendapp
+      image: mouni9948/contact_backend_app
       ports:
       - containerPort: 8080
 ---

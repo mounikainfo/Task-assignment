@@ -3,12 +3,6 @@ region       = "us-west-2"
 project_name = "task"
 environment  = "dev"
 
-/* # s3 variables
-env_file_bucket_name = "task-terraform-remote-state"
-env_file_name        = "task.env" */
-
-
-
 # s3 variables
 env_file_bucket_name = "assignment-bucket"
 env_file_name        = "rentzone.env"

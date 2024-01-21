@@ -33,3 +33,14 @@ database_snapshot_identifier = "data"
 database_instance_class      = "db.t2.micro"
 database_instance_identifier = "data"
 muti_az_deployment           = "false"
+
+
+#acm variables
+domain_name       = "jilakarimounika.shop"
+alternative_names = "*.jilakarimounika.shop"
+
+# alb variables
+target_type = "ip"
+
+# route-53 variables
+record_name = "WWW"

@@ -4,11 +4,6 @@ variable "project_name" {}
 variable "environment" {}
 
 
-/* # s3 variables
-variable "env_file_bucket_name" {}
-variable "env_file_name" {} */
-
-
 # s3 variables
 variable "env_file_bucket_name" {}
 variable "env_file_name" {}
@@ -31,3 +26,16 @@ variable "database_snapshot_identifier" {}
 variable "database_instance_class" {}
 variable "database_instance_identifier" {}
 variable "muti_az_deployment" {}
+
+#acm variables
+variable "domain_name" {}
+variable "alternative_names" {
+}
+
+# alb variables
+variable "target_type" {}
+
+
+
+# route-53 variables
+variable "record_name" {}

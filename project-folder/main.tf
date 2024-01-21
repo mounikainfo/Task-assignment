@@ -4,22 +4,16 @@ locals {
   environment  = var.environment
 }
 /* 
-# create s3 bucket
-module "s3" {
-  source      = "../modules/s3"
-  name        = "private-terraform-module"
-  environment = "prod"
-}
- */
 
-/* # create s3 bucket
+
+# create s3 bucket
 module "s3_bucket" {
   source               = "../modules/s3"
   project_name         = local.project_name
   env_file_bucket_name = var.env_file_bucket_name
   env_file_name        = var.env_file_name
 }
- */
+
 #vpc module
 
 module "vpc" {
@@ -60,7 +54,7 @@ module "security_group" {
   ssh_ip       = var.ssh_ip
 }
 
-/*  # launch rds instance
+# launch rds instance
 module "rds" {
   source                       = "../modules/rds"
   project_name                 = local.project_name
@@ -76,7 +70,25 @@ module "rds" {
 }
 
 
- */
+# request ssl certificate
+module "ssl_certificate" {
+  source            = "git@github.com:mounikainfo/terraform-modules.git//acm"
+  domain_name       = var.domain_name
+  alternative_names = var.alternative_names
+}
+
+# create application load balancer
+module "application_load_balancer" {
+  source                = "../modules/alb"
+  project_name          = local.project_name
+  environment           = local.environment
+  alb_security_group_id = module.security_group.alb_security_group_id
+  public_subnet_az1_id  = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id  = module.vpc.public_subnet_az2_id
+  target_type           = var.target_type
+  vpc_id                = module.vpc.vpc_id
+  certificate_arn       = module.ssl_certificate.certificate_arn
+} 
 
 # create iam
 module "iam" {
@@ -106,4 +118,18 @@ module "nodegroup" {
   public_subnet_az1_id = module.vpc.public_subnet_az1_id
   public_subnet_az2_id = module.vpc.public_subnet_az2_id
   EKS_CLUSTER_NAME          = module.eks.EKS_CLUSTER_NAME
+}
+
+
+ # create records in route53
+module "route_53" {
+  source                             = "../modules/route-53"
+  domain_name                        = module.ssl_certificate.domain_name
+  record_name                        = var.record_name
+  application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
+  application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
+}
+# print the website url
+output "website_url" {
+  value = join("", ["https://", var.record_name, ".", var.domain_name])
 }

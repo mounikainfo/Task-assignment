@@ -3,9 +3,6 @@ locals {
   project_name = var.project_name
   environment  = var.environment
 }
-/* 
-
-
 # create s3 bucket
 module "s3_bucket" {
   source               = "../modules/s3"
@@ -15,7 +12,6 @@ module "s3_bucket" {
 }
 
 #vpc module
-
 module "vpc" {
   source                       = "../modules/vpc"
   project_name                 = local.project_name
@@ -69,7 +65,6 @@ module "rds" {
   database_security_group_id   = module.security_group.database_security_group_id
 }
 
-
 # request ssl certificate
 module "ssl_certificate" {
   source            = "git@github.com:mounikainfo/terraform-modules.git//acm"
@@ -109,8 +104,6 @@ module "eks" {
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
 }
 
-
-
 # create Node Group
 module "nodegroup" {
   source                    = "../modules/nodegroup"
@@ -119,7 +112,6 @@ module "nodegroup" {
   public_subnet_az2_id = module.vpc.public_subnet_az2_id
   EKS_CLUSTER_NAME          = module.eks.EKS_CLUSTER_NAME
 }
-
 
  # create records in route53
 module "route_53" {

@@ -4,8 +4,8 @@ project_name = "task"
 environment  = "dev"
 
 # s3 variables
-env_file_bucket_name = "assignment-bucket"
-env_file_name        = "rentzone.env"
+env_file_bucket_name = "<bucket name>"
+env_file_name        = "<file name>"
 
 # vpc variables
 /* region                       = "us-west-2"
@@ -20,7 +20,7 @@ private_data_subnet_az1_cidr = "10.0.4.0/24"
 private_data_subnet_az2_cidr = "10.0.5.0/24"
 
 # security group variables
-ssh_ip = "37.245.143.20/32"
+ssh_ip = "<id>"
 
 # rds variables
 database_snapshot_identifier = "data"
@@ -30,8 +30,8 @@ muti_az_deployment           = "false"
 
 
 #acm variables
-domain_name       = "jilakarimounika.shop"
-alternative_names = "*.jilakarimounika.shop"
+domain_name       = "<domain name>"
+alternative_names = "*.<domain name>"
 
 # alb variables
 target_type = "ip"
